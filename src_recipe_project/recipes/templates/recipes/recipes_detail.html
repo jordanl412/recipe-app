@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recipes Homepage</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    </head>
+    <style>
+        body {
+            font-family: 'Manrope';
+        }
+        a {
+            position: absolute;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <a href="/list">Back to all recipes</a>
+            <br>
+            <br>
+            <img
+                src="{{object.pic.url}}"
+                alt="{{object.name}}"
+                class="recipe-image"
+            />
+            <h2>{{object.name}}</h2>
+            <p>{{object.description}}</p>
+            <p>Ingredients:</p>
+            <ul>
+                {% for ingredient in object.ingredients.all %}
+                <li>{{ingredient}}</li>
+                {% endfor %}
+            </ul>
+            <p>Cooking Time: {{object.cooking_time}} minutes</p>
+            <p>Difficulty Level: {{object.difficulty}}</p>
+        </div>
+    </body>
+</html>

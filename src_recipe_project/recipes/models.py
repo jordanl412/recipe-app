@@ -1,4 +1,13 @@
 from django.db import models
+from django.shortcuts import reverse
+
+# Choice lists
+category_choices = (
+    ('Breakfast', 'Breakfast'),
+    ('Lunch/Dinner', 'Lunch/Dinner'),
+    ('Dessert', 'Dessert'),
+    ('Drink', 'Drink'),
+)
 
 # Create Recipe model
 class Recipe(models.Model):
@@ -9,6 +18,8 @@ class Recipe(models.Model):
     ingredients = models.ManyToManyField(
         'ingredients.Ingredient', through='recipeingredients.RecipeIngredient'
     )
+    pic = models.ImageField(upload_to='recipes', default='no_picture.jpg')
+    category = models.CharField(max_length=15, choices=category_choices, default='Lunch/Dinner')
 
     def calculate_difficulty(self):
         from recipeingredients.models import (RecipeIngredient)
@@ -30,4 +41,7 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('recipes:recipes_detail', kwargs={'pk': self.pk})
 

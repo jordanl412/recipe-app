@@ -89,3 +89,25 @@ class RecipeModelTest(TestCase):
         recipe.save()
         # Compare recipe difficulties
         self.assertEqual(recipe.difficulty, 'Hard')
+
+    # Test get_absolute_url
+    def test_get_absolute_url(self):
+        recipe = Recipe.objects.create(
+            id=1, name='Test Recipe', cooking_time=30, description='Test description'
+        )
+        self.assertEqual(recipe.get_absolute_url(), '/list/1')
+
+    # Test RecipesListView
+    def test_recipes_list_view(self):
+        response = self.client.get('/list/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipes_list.html')
+    
+    # Test RecipesDetailView
+    def test_recipes_detail_view(self):
+        recipe = Recipe.objects.create(
+            id=1, name='Test Recipe', cooking_time=30, description='Test description'
+        )
+        response = self.client.get('/list/1')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/recipes_detail.html')

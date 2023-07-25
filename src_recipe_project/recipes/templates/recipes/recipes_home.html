@@ -1,14 +1,52 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="eng">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recipes Homepage</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    </head>
     <style>
-        h1 {text-align: center}
-        p {text-align: center}
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url("{% static 'recipes/images/recipes_background_plain.jpeg' %}");
+            background-size: cover;
+            background-position: center;
+            font-family: 'Manrope';
+        }
+        .title {
+            text-align: center;
+        }
+        h1 {
+            position: relative;
+            right: 23%;
+            bottom: 12%;
+            color: whitesmoke;
+            text-align: center;
+            font-size: 350%;
+        }
+        a {
+            color: whitesmoke;
+            text-align: center;
+            font-size: 240%;
+            position: relative;
+            right: 23%;
+            bottom: 12%;
+        }
     </style>
     <title>
         Recipe App Home
     </title>
     <body>
-        <h1>Welcome to the Recipe App!</h1>
-        <p>Currently under construction...</p>
+        <div class="title"></div>
+        <h1>Welcome to the <br>
+            Recipes App</h1>
+        <a href="/list">View Recipes</a>
     </body>
 </html>
