@@ -60,6 +60,9 @@
         </style>
     </head>
     <body>
+        <div>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
         <h1>Recipes</h1>
         <ul class="recipe-list">
             {% for object in object_list %}

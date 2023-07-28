@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Login</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    </head>
+    <style>
+        body {
+            font-family: 'Manrope';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .app-name {
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            text-align: center;
+        }
+        .login-form {
+            left: 50%;
+        }
+    </style>
+    <body>
+        <div>
+            <div class="app-name">
+                <h1>Recipe App</h1>
+            </div>
+            <br>
+            <div class="login-form">
+                <h2>Log In</h2>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
