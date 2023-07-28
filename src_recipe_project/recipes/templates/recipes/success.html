@@ -1,0 +1,48 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Logout Success</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+    </head>
+    <style>
+        body {
+            font-family: 'Manrope';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .app-name {
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            text-align: center;
+        }
+        .success-message {
+            left: 50%;
+        }
+        .log-back-in {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    </style>
+    <body>
+        <div>
+            <div class="app-name">
+                <h1>Recipe App</h1>
+            </div>
+            <br>
+            <div class="success-message">
+                <h3>You have successfully logged out.</h3>
+                <p class="log-back-in">
+                    <a href="{% url 'login' %}">Log back in</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>

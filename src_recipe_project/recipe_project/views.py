@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib import messages
 
 # Define a function view called login_view that takes a request from user
 def login_view(request):
@@ -20,13 +21,14 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.info(request, f'You are now logged in as {username}.')
                 return redirect('recipes:recipes_list')
         else:
-            error_message = 'Invalid username or password.'
+            messages.error(request, 'Invalid username or password.')
 
     context = {
         'form': form,
-        'error_message': error_message
+        'error_message': 'Invalid username or password.'
     }
 
     # Load login page text using 'context' information
@@ -35,4 +37,5 @@ def login_view(request):
 # Define function-based logout_view that takes a request from user
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    messages.success(request, 'You\'ve successfully logged out.')
+    return redirect('success')
