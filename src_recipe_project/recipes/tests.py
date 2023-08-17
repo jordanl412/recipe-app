@@ -2,6 +2,8 @@ from django.test import TestCase
 from .models import Recipe
 from recipeingredients.models import RecipeIngredient
 from ingredients.models import Ingredient
+from .forms import RecipeSearchForm
+from django.contrib.auth.models import User
 
 # Create your tests here.
 class RecipeModelTest(TestCase):
@@ -99,7 +101,7 @@ class RecipeModelTest(TestCase):
 
     # Test RecipesListView
     def test_recipes_list_view(self):
-        response = self.client.get('/list/')
+        response = self.client.get('/recipes/')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'recipes/recipes_list.html')
     
@@ -111,3 +113,21 @@ class RecipeModelTest(TestCase):
         response = self.client.get('/list/1')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'recipes/recipes_detail.html')
+
+    def setUp(self):
+        # Create a test user and log them in for the view requiring login
+        self.user = User.objects.create_user(
+            username='testuser', password='testpassword'
+        )
+        self.client.login(username='testuser', password='testpassword')
+
+    def test_view_protected(self):
+       self.client.logout()
+       response = self.client.get('/recipes/')
+       self.assertEqual(response.status_code, 302)
+       self.assertRedirects(response, '/login/?next=/recipes/') 
+
+    def test_form_validation_with_valid_data(self):
+        form = RecipeSearchForm({'recipe_category': 'Breakfast', 'chart_type': 'Bar Chart'})
+        self.assertTrue(form.is_valid())
+

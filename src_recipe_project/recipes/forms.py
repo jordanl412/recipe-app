@@ -1,17 +1,17 @@
 from django import forms
 
 RECIPE_CATEGORY_CHOICES = (
-    ('#1', 'Drink'),
-    ('#2', 'Breakfast'),
-    ('#3', 'Lunch/Dinner'),
-    ('#4', 'Dessert'),
-    ('#5', 'Show All'),
+    ('Drink', 'Drink'),
+    ('Breakfast', 'Breakfast'),
+    ('Lunch/Dinner', 'Lunch/Dinner'),
+    ('Dessert', 'Dessert'),
+    ('Show All', 'Show All'),
 )
 
 CHART_CHOICES = (
-    ('#1', 'Bar Chart'),
-    ('#2', 'Pie Chart'),
-    ('#3', 'Line Chart'),
+    ('Bar Chart', 'Bar Chart'),
+    ('Pie Chart', 'Pie Chart'),
+    ('Line Chart', 'Line Chart'),
 )
 
 class RecipeSearchForm(forms.Form):

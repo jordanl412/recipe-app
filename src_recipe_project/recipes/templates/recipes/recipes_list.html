@@ -31,6 +31,11 @@
                 opacity: 0.3;
             }*/
             
+            .logout-button {
+                justify-content: left;
+                align-items: left;
+                text-align: left;
+            }
             .recipe-list {
                 display: flex;
                 flex-wrap: wrap;
@@ -60,10 +65,12 @@
         </style>
     </head>
     <body>
-        <div>
+        <div class="logout-button">
             <a href="{% url 'logout' %}">Logout</a>
         </div>
         <h1>Recipes</h1>
+        <br>
+        <a href="records">Search Recipe Records</a>
         <ul class="recipe-list">
             {% for object in object_list %}
             <li class="recipe-item">

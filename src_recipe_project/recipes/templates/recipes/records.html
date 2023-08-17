@@ -19,6 +19,14 @@
     </style>
     <body>
         <div>
+            <div>
+                <a href="/recipes">Back to all recipes</a>
+            </div>
+            <br>
+            <div>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+            <br>
             <div class="title">
                 <h1>Recipe Records</h1>
                 <h2>Search for Recipes</h2>
@@ -26,7 +34,7 @@
             <hr>
             <br>
             <div class="form">
-                <form action="" method="POST">
+                <form action="" method="GET">
                     {% csrf_token %}
                     {{form}}
                     <button type="submit">Search</button>

@@ -32,6 +32,8 @@ def get_graph():
     # Return the image/graph
     return graph
 
+# chart_type: user's input of chart type
+# data: pandas dataframe
 def get_chart(chart_type, data, **kwargs):
     # Switch plot backend to AGG(Anti-Grain Geometry) - to write to file
     # AGG is preferred solution to write PNG files
@@ -41,26 +43,27 @@ def get_chart(chart_type, data, **kwargs):
     fig = plt.figure(figsize=(6, 3))
 
     # Select chart_type based on user input from the form
-    if chart_type == '#1':
+    if chart_type == 'Bar Chart':
         # Plot bar chart with recipe name as x-axis and cooking time as y-axis
         plt.title('Recipe Cooking Times')
-        plt.bar(data['title'], data['cooking_time'])
+        plt.bar(data['name'], data['cooking_time'])
         plt.xlabel('Recipes')
         plt.ylabel('Cooking Time (in minutes)')
-    elif chart_type == '#2':
+    elif chart_type == 'Pie Chart':
         # Pie chart based on cooking times
         # Cooking times are sent from the view as labels
         plt.title('Recipe Cooking Times')
         labels = kwargs.get('labels')
         plt.pie(data['cooking_time'], labels=None)
         plt.legend(
-            data['title'],
-            location='upper right',
+            data['name'],
+            loc='upper left',
+            bbox_to_anchor=(.85, 1.025),
         )
-    elif chart_type == '#3':
+    elif chart_type == 'Line Chart':
         # Line chart with recipe name as x-axis and cooking time as y-axis
         plt.title('Recipe Cooking Times')
-        plt.plot(data['title'], data['cooking_time'])
+        plt.plot(data['name'], data['cooking_time'])
         plt.xlabel('Recipes')
         plt.ylabel('Cooking Time (in minutes)')
     else:
