@@ -8,6 +8,7 @@
         <title>Recipes List</title>
         <script src="https://kit.fontawesome.com/78cfbdb533.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+        <link rel="stylesheet" href="/static/style.css">
         <style>
             body {
                 display: flex;
@@ -16,20 +17,14 @@
                 justify-content: center;
                 height: 100%;
                 font-family: 'Manrope';
+                margin-top: 80px;
             }
-            /*body:after {  
-                content: "";
-                background-image: url("{% static 'recipes/images/recipes_background_plain.jpeg' %}");
-                background-size: cover;
-                background-repeat: no-repeat;
-                background-attachment: fixed, scroll;
-                position: fixed;
-                top: 0px;
-                right: 0px;
-                bottom: 0px;
-                left: 0px;
-                opacity: 0.3;
-            }*/
+
+            h1 {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
             
             .logout-button {
                 justify-content: left;
@@ -65,29 +60,34 @@
         </style>
     </head>
     <body>
-        <div class="logout-button">
-            <a href="{% url 'logout' %}">Logout</a>
-        </div>
-        <h1>Recipes</h1>
-        <br>
-        <a href="records">Search Recipe Records</a>
-        <ul class="recipe-list">
-            {% for object in object_list %}
-            <li class="recipe-item">
-                <a href="{{ object.get_absolute_url }}">
-                    <div class="recipe-image-container">
-                        <img
-                        class="recipe-image"
-                        src="{{object.pic.url}}"
-                        alt="{{object.name}}"
-                        />
-                    </div>
-                    <a class="recipe-name" href="{{ object.get_absolute_url }}" style="margin-left: 10px">{{object.name}}</a>
-                    <p style="margin-left:10px">{{object.category}}</p>
-                    <i class="fa-regular fa-clock" style="margin-left: 10px">   {{object.cooking_time}}</i>
-                </a>
-            </li>
-            {% endfor %}
-        </ul>
+        <header>
+            <div class="topnav">
+                <a class="active" href="/">Home</a>
+                <a href="/recipes">All Recipes</a>
+                <a href="/recipes/records">Records</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </header>
+        <main>
+            <h1>Recipes</h1>
+            <ul class="recipe-list">
+                {% for object in object_list %}
+                <li class="recipe-item">
+                    <a href="{{ object.get_absolute_url }}">
+                        <div class="recipe-image-container">
+                            <img
+                            class="recipe-image"
+                            src="{{object.pic.url}}"
+                            alt="{{object.name}}"
+                            />
+                        </div>
+                        <a class="recipe-name" href="{{ object.get_absolute_url }}" style="margin-left: 10px">{{object.name}}</a>
+                        <p style="margin-left:10px">{{object.category}}</p>
+                        <i class="fa-regular fa-clock" style="margin-left: 10px">   {{object.cooking_time}}</i>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </main>
     </body>
 </html>

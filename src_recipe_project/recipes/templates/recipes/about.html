@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Recipes List</title>
+        <script src="https://kit.fontawesome.com/78cfbdb533.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope">
+        <link rel="stylesheet" href="/static/style.css">
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
+                font-family: 'Manrope';
+                margin-top: 80px;
+            }
+
+            h1 {
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+            
+            .about-me {
+                padding-left: 30px;
+                padding-right: 30px;
+                flex: 1;
+                display: flex;
+                justify-content: center;
+            }
+            .about-me-paragraph {
+                padding-right: 20px;
+                padding-left: 80px;
+            }
+            .links-container {
+                padding-left: 140px;
+                flex: 1;
+            }
+            .link-button {
+                margin: 12px;
+            }
+            .headshot {
+                float: right;
+                flex: 1;
+                justify-content: center;
+                text-align: center;
+                padding-left: 200px;
+                padding-right: 200px;
+                padding-bottom: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="topnav">
+                <a class="active" href="/">Home</a>
+                <a href="/recipes">All Recipes</a>
+                <a href="/recipes/records">Records</a>
+                <a href="/about">About Me</a>
+                <a href="{% url 'logout' %}">Logout</a>
+            </div>
+        </header>
+        <main>
+            <h1>About Me</h1>
+            <div class="about-me">
+                <p class="about-me-paragraph">
+                    My name is Jordan Lazan, and I'm a web developer based in New York City.
+                    I developed this full-stack Recipe App to let users search and find new recipes,
+                    and add their own to the collection. If you'd like to check out more of my work,
+                    head to my portfolio and GitHub linked below. I'm always eager to connect
+                    with new people and fellow developers, so don't hesitate to reach out 
+                    on LinkedIn or via email!
+                </p>
+                <div class="headshot">
+                    <img src="{% static 'recipes/images/headshot.jpeg' %}" height="250" width="200" alt="headshot">
+                </div>
+            </div>
+            <div class="links-container">
+                <button class="link-button">
+                  <a
+                    href="https://www.jordanlazan.com"
+                    target="_blank"
+                    rel="noopener">
+                    Portfolio
+                    </a>
+                </button>
+                <button class="link-button">
+                  <a 
+                    href="https://github.com/jordanl412"
+                    target="_blank"
+                    rel="noopener">
+                    GitHub
+                    </a>
+                </button>
+                <button class="link-button">
+                  <a 
+                    href="mailto:jordanlazan@gmail.com" 
+                    target="_blank" 
+                    rel="noopener">
+                    Email
+                    </a>
+                </button>
+                <button class="link-button">
+                  <a
+                    href="https://linkedin.com/in/jordanlazan"
+                    target="_blank"
+                    rel="noopener">
+                    LinkedIn    
+                    </a>
+                </button>
+        </main>
+    </body>
+</html>

@@ -62,6 +62,9 @@ def records(request):
     # Load the recipes/record.html page using the above prepared data
     return render(request, 'recipes/records.html', context)
 
+@login_required
+def about(request):
+    return render(request, 'recipes/about.html')
 
 '''
 @login_required
