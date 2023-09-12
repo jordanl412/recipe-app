@@ -5,6 +5,7 @@ from .views import (
     RecipeDetailView,
     records,
     about,
+    create,
 )
 
 app_name = 'recipes'
@@ -15,5 +16,6 @@ urlpatterns = [
     path('list/<pk>', RecipeDetailView.as_view(), name='recipes_detail'),
     path('recipes/records', records, name='records'),
     path('about/', about, name='about'),
+    path('create/', create, name='create'),
 ]
 

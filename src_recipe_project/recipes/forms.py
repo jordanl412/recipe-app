@@ -52,3 +52,10 @@ class RecipeSearchForm(forms.Form):
                 'Please enter a recipe name or select a recipe category.'
             )
         return cleaned_data
+
+class createRecipeForm(forms.Form):
+    name = forms.CharField(max_length=255)
+    cooking_time = forms.IntegerField(help_text='in minutes')
+    category = forms.ChoiceField(choices=RECIPE_CATEGORY_CHOICES)
+    ingredients = forms.CharField(max_length=400)
+    description = forms.CharField(max_length=400)

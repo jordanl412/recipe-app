@@ -3,7 +3,7 @@ from django.views.generic import ListView, DetailView
 from .models import Recipe
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from .forms import RecipeSearchForm
+from .forms import RecipeSearchForm, createRecipeForm
 from .utils import get_recipename_from_id, get_chart
 import pandas as pd
 
@@ -65,6 +65,41 @@ def records(request):
 @login_required
 def about(request):
     return render(request, 'recipes/about.html')
+
+@login_required
+def create(request):
+    create_form = createRecipeForm(request.POST or None, request.FILES)
+    name = None
+    cooking_time = None
+    category = None
+    ingredients = None
+    description = None
+
+    if request.method == 'POST':
+        try:
+            recipe = Recipe.objects.create(
+                name = request.POST.get('name'),
+                cooking_time = request.POST.get('cooking_time'),
+                category = request.POST.get('category'),
+                ingredients = request.POST.get('ingredients'),
+                description = request.POST.get('description'),
+            )
+
+            recipe.save()
+
+        except:
+            print('An error has occurred')
+
+    context = {
+        'create_form': create_form,
+        'name': name,
+        'cooking_time': cooking_time,
+        'category': category,
+        'ingredients': ingredients,
+        'description': description,
+        }
+
+    return render(request, 'recipes/create.html', context)
 
 '''
 @login_required

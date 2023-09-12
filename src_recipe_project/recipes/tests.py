@@ -131,3 +131,12 @@ class RecipeModelTest(TestCase):
         form = RecipeSearchForm({'recipe_category': 'Breakfast', 'chart_type': 'Bar Chart'})
         self.assertTrue(form.is_valid())
 
+    def test_about_me_view(self):
+        response = self.client.get('/about/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/about.html')
+
+    def test_create_view(self):
+        response = self.client.get('/create/')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'recipes/create.html')
